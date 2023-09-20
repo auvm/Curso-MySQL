@@ -1,6 +1,6 @@
 
 DROP DATABASE IF EXISTS libreria_cf;
-CREATE DATABASE IF NOT EXISTS libreria_cf;
+CREATE DATABASE IF NOT EXISTS libreria_cf CHARACTER SET "UTF8";
 
 USE libreria_cf;
 
@@ -11,7 +11,8 @@ apellido VARCHAR(50) NOT NULL,
 seudonimo VARCHAR(50) UNIQUE, 
 genero CHAR(1) NOT NULL, -- M o F
 fecha_nacimiento DATE NOT NULL, -- Mes-Año-Dia
-pais_origen VARCHAR(40) NOT NULL
+pais_origen VARCHAR(40) NOT NULL,
+fecha_de_creacion DATETIME DEFAULT NOW() 
 );
 
 INSERT INTO autores (autor_id, nombre, apellido, genero, fecha_nacimiento, pais_origen) 
