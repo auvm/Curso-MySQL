@@ -15,6 +15,17 @@ pais_origen VARCHAR(40) NOT NULL,
 fecha_de_creacion DATETIME DEFAULT NOW() 
 );
 
+CREATE TABLE IF NOT EXISTS libros(
+    libro_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    autor_id INT UNSIGNED NOT NULL,
+    titulo VARCHAR (50) NOT NULL,
+    descripcion VARCHAR(250),
+    paginas INT UNSIGNED,
+    fecha_de_publicacion DATE NOT NULL,
+    fecha_de_creacion DATETIME DEFAULT current_timestamp(),
+    FOREIGN KEY (autor_id) REFERENCES autores(autor_id)
+);
+
 INSERT INTO autores (nombre, apellido, genero, fecha_nacimiento, pais_origen) 
 VALUES ("Test autor", "Test autor", "M", "2000-06-13", "México"),
 ("Test autor", "Test autor", "M", "2000-06-13", "México"),
@@ -31,4 +42,10 @@ VALUES  (8, "Test ocho", "Test ocho", "F", "2000-06-13", "México"),
         (10, "Test diez", "Test diez", "F", "2014-9-12", "México"),
         (11, "Test once", "Test once", "M", "2003-2-23", "México");
 
+
+-- muestra con la creación de una llave foranea
+INSERT INTO libros (libro_id, autor_id, titulo, descripcion, paginas, fecha_de_publicacion)
+VALUES (1, 1, "Génesis", "Sobre la creación del mundo", 250, "1940-12-31");
+
 SELECT * FROM autores;
+SELECT * FROM libros;
